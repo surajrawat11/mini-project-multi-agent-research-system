@@ -290,6 +290,55 @@ details summary {
     margin-top: 3rem;
     letter-spacing: 0.08em;
 }
+
+/* ── Rendered report markdown: tables (and body text generally) were
+   falling back to Streamlit's own muted/secondary text styling, which
+   dims via both a lighter color AND reduced opacity on the dark
+   background. Selectors are duplicated across the container class names
+   Streamlit has used across versions, and every rule forces full opacity
+   plus a normal font-weight so nothing renders as faint/thin. ── */
+.stApp table,
+[data-testid="stMarkdownContainer"] table,
+.stMarkdown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+.stApp th,
+[data-testid="stMarkdownContainer"] th,
+.stMarkdown th {
+    color: #ff9d4d !important;
+    opacity: 1 !important;
+    font-weight: 700 !important;
+    text-align: left;
+    padding: 0.6rem 0.9rem;
+    border-bottom: 2px solid rgba(255,140,50,0.35);
+}
+.stApp td,
+[data-testid="stMarkdownContainer"] td,
+.stMarkdown td {
+    color: #f5f2ec !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.stApp tr:hover td {
+    background: rgba(255,255,255,0.03);
+}
+/* body text / lists in the rendered report */
+.stApp [data-testid="stMarkdownContainer"] p,
+.stApp [data-testid="stMarkdownContainer"] li,
+.stApp [data-testid="stMarkdownContainer"] span {
+    color: #f5f2ec !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+}
+.stApp [data-testid="stMarkdownContainer"] strong {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+.stApp [data-testid="stMarkdownContainer"] a { color: #ff9d55 !important; }
 </style>
 """, unsafe_allow_html=True)
 
